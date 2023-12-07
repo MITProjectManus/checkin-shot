@@ -34,6 +34,11 @@ site_shot = {
     'endpoint' : 'https://api.site-shot.com/',
     'userkey'  : 'SITE_SHOT_API_KEY'
 }
+
+SMTP_NOTIFY = True # False to log to syslog only
+SMTP_USER = 'username'
+SMTP_PASS = 'password'
+SMTP_SERVER = 'outgoing.mit.edu'
 ```
 
 ## Resulting Files
@@ -50,4 +55,4 @@ always serving up the most recent screenshot of the checkin view for each of the
 
 # Notifications
 
-If outgoing email is configured, 
+If outgoing email is configured, anything other than a success result code from the API call will result in a notification being mailed out to the configured error address.
