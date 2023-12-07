@@ -8,7 +8,7 @@ In this specific case we use the Site-Shot API, a reliable subscription service 
 
 ## Environment and Secrets
 
-This program requires a local file, env.py, which sets several key variables used by the program. See the example below for reference:
+This program requires a local file, `env.py`, which sets several key variables used by the program. See the example below for reference:
 
 ```
 # A dictionary of makerspaces to process. The keys need to be
