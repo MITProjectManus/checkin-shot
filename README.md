@@ -20,14 +20,34 @@ makerspaces = {
     'makerspace3' : {'url' : 'AIRTABLE_VIEW_URL_FOR_MAKERSPACE1'}
 }
 
-# API Key for free or paid site-shot.com account
-site_shot_api_key = 'SITE_SHOT_API_KEY'
-
 # Document root to place files into. This should be a full path
 # underneath the web server's document root. For example, our
 # web server document root for nginx running on macos installed
-# via homebrew is /usr/local/var/www/ and we want to create a
+# via homebrew is /usr/local/var/www and we want to create a
 # directory of images for each makerspace under
-# /usr/local/var/www/checkins
-checkin_document_root = '/usr/local/var/www/checkins'
+# /usr/local/var/www/checkin
+checkin_document_root = '/usr/local/var/www/checkin'
+
+# site-shot configuration
+site_shot = {
+    'interval' : 3600,
+    'endpoint' : 'https://api.site-shot.com/',
+    'userkey'  : 'SITE_SHOT_API_KEY'
+}
 ```
+
+## Resulting Files
+
+The most recent checkin screenshot for each makerspace will be saved as `latest.png`. Continuing the example outlined in `env.py` above, for a web server found at `https://makerspaces.mit.edu` this would result in:
+
+```
+https://makerspaces.mit.edu/checkin/makerspace1/latest.png
+https://makerspaces.mit.edu/checkin/makerspace2/latest.png
+https://makerspaces.mit.edu/checkin/makerspace3/latest.png
+```
+
+always serving up the most recent screenshot of the checkin view for each of the three makerspaces. 10 previous screenshots are kept as `makerspace1_0.png` through `makerspace1_9.png`.
+
+# Notifications
+
+If outgoing email is configured, 
