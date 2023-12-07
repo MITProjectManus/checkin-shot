@@ -5,3 +5,29 @@ Screenshot a large and script-heavy checkin screen and save it as a static image
 They load images really well, though, so we take advantage of one of the many site screenshot APIs to generate frequent static snapshots of the checkin screens that can then be displayed as images on digital signage.
 
 In this specific case we use the Site-Shot API, a reliable subscription service for taking screenshots of web pages.
+
+## Environment and Secrets
+
+This program requires a local file, env.py, which sets several key variables used by the program. See the example below for reference:
+
+```
+# A dictionary of makerspaces to process. The keys need to be
+# file-system safe unique names for each makerspace as they'll
+# be used to create image directories.
+makerspaces = {
+    'makerspace1' : {'url' : 'AIRTABLE_VIEW_URL_FOR_MAKERSPACE1'},
+    'makerspace2' : {'url' : 'AIRTABLE_VIEW_URL_FOR_MAKERSPACE1'},
+    'makerspace3' : {'url' : 'AIRTABLE_VIEW_URL_FOR_MAKERSPACE1'}
+}
+
+# API Key for free or paid site-shot.com account
+site_shot_api_key = 'SITE_SHOT_API_KEY'
+
+# Document root to place files into. This should be a full path
+# underneath the web server's document root. For example, our
+# web server document root for nginx running on macos installed
+# via homebrew is /usr/local/var/www/ and we want to create a
+# directory of images for each makerspace under
+# /usr/local/var/www/checkins
+checkin_document_root = '/usr/local/var/www/checkins'
+```
