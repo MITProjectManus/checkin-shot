@@ -20,25 +20,40 @@ makerspaces = {
     'makerspace3' : {'url' : 'AIRTABLE_VIEW_URL_FOR_MAKERSPACE1'}
 }
 
-# Document root to place files into. This should be a full path
+# Local configuration items. 'docroot' should be a full path
 # underneath the web server's document root. For example, our
 # web server document root for nginx running on macos installed
 # via homebrew is /usr/local/var/www and we want to create a
 # directory of images for each makerspace under
 # /usr/local/var/www/checkin
-checkin_document_root = '/usr/local/var/www/checkin'
 
-# site-shot configuration
+output = {
+    'docroot' : '/usr/local/var/www/screenshots'
+}
+
+# site-shot configuration includes a reload interval, which
+# is the minimum reload interval. If triggers occur faster
+# then reload is delayed until interval has passed.
 site_shot = {
     'interval' : 3600,
     'endpoint' : 'https://api.site-shot.com/',
-    'userkey'  : 'SITE_SHOT_API_KEY'
+    'userkey'  : 'SITE_SHOT_PAID_API_KEY'
 }
 
-SMTP_NOTIFY = True # False to log to syslog only
-SMTP_USER = 'username'
-SMTP_PASS = 'password'
-SMTP_SERVER = 'outgoing.mit.edu'
+# SMTP email configuration for reporting critical failures
+email = {
+    'server' : 'SMTP_SERVER',
+    'notify' : True,
+    'sender' : 'SENDER_EMAIL',
+    'recipients' : ['RECIPIENT_EMAIL'],
+    'user' : 'AUTH_USER',
+    'pass' : 'AUTH_PASS' 
+}
+
+# A reload key that is verified for triggers requesting a reload
+keys = {
+    'reload' : 'RELOAD_KEY'
+}
 ```
 
 ## Resulting Files
@@ -46,9 +61,9 @@ SMTP_SERVER = 'outgoing.mit.edu'
 The most recent checkin screenshot for each makerspace will be saved as `latest.png`. Continuing the example outlined in `env.py` above, for a web server found at `https://makerspaces.mit.edu` this would result in:
 
 ```
-https://makerspaces.mit.edu/checkin/makerspace1/latest.png
-https://makerspaces.mit.edu/checkin/makerspace2/latest.png
-https://makerspaces.mit.edu/checkin/makerspace3/latest.png
+https://makerspaces.mit.edu/screenshots/makerspace1/latest.png
+https://makerspaces.mit.edu/screenshots/makerspace2/latest.png
+https://makerspaces.mit.edu/screenshots/makerspace3/latest.png
 ```
 
 always serving up the most recent screenshot of the checkin view for each of the three makerspaces. 10 previous screenshots are kept as `makerspace1_0.png` through `makerspace1_9.png`.
@@ -56,3 +71,13 @@ always serving up the most recent screenshot of the checkin view for each of the
 # Notifications
 
 If outgoing email is configured, anything other than a success result code from the API call will result in a notification being mailed out to the configured error address.
+
+# Programs
+
+## `checkin-shot.py`
+
+This program is designed to be runvia a system call or cron. It generates a set of screenshots via the Site-Shot API and deposits them into docroot. It also rotates previous screenshot files.
+
+## `checkin-trigger.py`
+
+This program implements a simple Flask endpoint to listen for a properly keyed trigger to fetch a new set of screenshots.
