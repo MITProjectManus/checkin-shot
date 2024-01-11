@@ -60,14 +60,14 @@ def makerspace_checkin_screen(makerspace, args):
 	requestfile = output['docroot'] + makerspace + '.req'
 	# Check for the existence of a request file or the flag to ignore it
 	if(not os.path.exists(requestfile) and not args['regular']):
-		logging.warning("Request file {} for {} does not exist.".format(requestfile, makerspace))
+		logging.debug("Request file {} for {} does not exist.".format(requestfile, makerspace))
 		return(412)
 		requestfile_mt = os.path.getmtime(requestfile)
 		if(requestfile_mt < timefile_mt):
-			logging.warning("Request file {} is older than last screenshot for {}.".format(requestfile, makerspace))
+			logging.debug("Request file {} is older than last screenshot for {}.".format(requestfile, makerspace))
 			return(412)
 	if(now - timefile_mt < site_shot['interval']):
-		logging.warning("Minimum time interval not yet reached to update screenshot for {}".format(makerspace))
+		logging.debug("Minimum time interval not yet reached to update screenshot for {}".format(makerspace))
 		return(412)
 	screenshot = get_screenshot(
 		{'url': makerspaces[makerspace]['url'],
@@ -146,7 +146,7 @@ if __name__ == '__main__':
 	parser.add_argument('-W', '--width',    type=int, default=1430, help='Width of the requested browser snapshot, default = 1430')
 	parser.add_argument('-H', '--height',   type=int, default=1080, help='Height of the requested browser snapshot, default = 1080')
 	parser.add_argument('-Z', '--zoom',     type=int, default=125, help='Virtual browser zoom level, default = 25')
-	parser.add_argument('-l', '--loglevel', default='DEBUG', help='Log level (DEBUG|INFO|WARNING|ERROR|CRITICAL)')
+	parser.add_argument('-l', '--loglevel', default='WARNING', help='Log level (DEBUG|INFO|WARNING|ERROR|CRITICAL)')
 	parser.add_argument('-v', '--verbose',  action='store_true', help='Verbose mode forces log level to DEBUG')
 	args = parser.parse_args()
 
