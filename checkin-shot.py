@@ -76,8 +76,8 @@ def makerspace_checkin_screen(makerspace, args):
 		'zoom': args['zoom'],
 		'format': 'png',
 		'response_type': 'json',
-		'delay_time': 1500,
-		'timeout': 60000})
+		'delay_time': site_shot['delay_time'],
+		'timeout': site_shot['timeout']})
 	if screenshot is None:
 		logging.error("Screenshot generation failed.")
 		return(500)
