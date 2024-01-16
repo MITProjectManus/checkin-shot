@@ -36,6 +36,8 @@ output = {
 # then reload is delayed until interval has passed.
 site_shot = {
     'interval' : 3600,
+    'delay_time' : 3000,
+    'timeout' : 60000,
     'endpoint' : 'https://api.site-shot.com/',
     'userkey'  : 'SITE_SHOT_PAID_API_KEY'
 }
