@@ -102,10 +102,17 @@ def main(args):
 	# if(args['url']):
 	#	logging.debug("One-time URL: {}".format(args['url']))
 
-	makerspace_checkin_screen('metropolis', args)
-	makerspace_checkin_screen('thedeep', args)
-#	makerspace_checkin_screen('beaverworks', args)
-#	makerspace_checkin_screen('shed', args)
+	lockfile = output['docroot'] + 'lockfile'
+	if(not os.path.exists(lockfile)):
+		subprocess.run(["touch", lockfile])
+		makerspace_checkin_screen('metropolis', args)
+		makerspace_checkin_screen('thedeep', args)
+		# makerspace_checkin_screen('beaverworks', args)
+		# makerspace_checkin_screen('shed', args)
+		subprocess.run(["rm", lockfile])
+	else:
+		logging.warning("Lockfile exists. Another checkin-shot process may already be running.")
+		email_notify("Lockfile exists while running checkin-shot. Attention may be needed.")
 
 #	timefile = output['docroot'] + 'metropolis' + '.lst'
 #	if(os.path.exists(timefile)):
