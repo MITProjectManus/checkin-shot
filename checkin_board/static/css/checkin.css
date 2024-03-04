@@ -1,0 +1,216 @@
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: linen;
+}
+
+body.metropolis {
+  background-color: #00a19c;
+}
+
+body.thedeep {
+  background-color: #9563e6;
+}
+
+body.shed {
+  background-color: #ff9933;
+}
+
+body.beaverworks {
+  background-color: #336699;
+}
+
+body.theend {
+  background-color: linen;
+}
+
+p.theend {
+  color: darkslateblue;
+  font-size: 0.8rem;
+  text-align: center;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;  
+}
+
+p.error {
+  color: darkslateblue;
+  font-size: 1.1rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;  
+}
+
+div.errorbox {
+  background-color: white;
+  color: darkred;
+  font-size: 1.1rem;
+  font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;  
+  padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  border-radius: 13px;
+}
+
+h1.checkin-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: ghostwhite;
+}
+
+h1.guide {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: darkslategray;
+}
+
+h1.error {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: darkred;
+}
+
+
+h2.guide {
+  color: darkslategray;
+}
+
+div.row {
+  background-color: white;
+  min-height: 90px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 13px;
+}
+
+div.picture-column {
+  float: left;
+  width: 84px;
+  border-style: none;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+
+}
+
+div.text-column {
+  border-style: none;
+}
+
+img.profile-photo {
+  object-fit:cover;
+  border-radius: 10px;
+  border-style: none;
+}
+
+h2.display-name {
+  font-size: 1.2em;
+  margin-top: 0px;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  border-bottom: none;
+}
+
+span.onduty:before {
+  color: white;
+  background-color: forestgreen;
+  content: "ON DUTY";
+  padding: 2px;
+  border: 2px solid forestgreen;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: .8em;
+}
+
+span.onduty {
+  font-weight: bold;
+}
+
+span.mentor {
+  font-size: .8em;
+  color: #999999;
+  border: 1px solid #999999;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+p.noone {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  color: darkslateblue;
+  text-align: center;
+  font-size: 16px;
+  font-weight: normal;
+  font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;  
+
+}
+
+span.noone:before {
+  content: "No one is checked in right now. 🤔 Hmmm.... if no one is checked in right now, then who is reading this message?? 🙀";
+}
+
+div.credential-tags {
+}
+
+ul.credential-tags {
+  border-top: none;
+  list-style-type: none;
+}
+
+li.credential-tags {
+  display: inline;
+  white-space: nowrap;
+  padding-right: 5px;
+  line-height: 25px;
+}
+
+div.timestamp {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 0.5em;
+  color: #990000;
+  font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+}
+
+span.credential-tag {
+  padding: 1px 5px 1px 5px;
+}
+
+th.guide {
+  background-color: linen;
+  padding: 5px 5px 5px 5px;
+}
+
+th.vlabel {
+  writing-mode: vertical-lr;
+  text-align: right;
+}
+th.llabel {
+  text-align: right;
+  width: 8rem;
+}
+
+td.guide {
+  text-align: center;
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+}
+
+td.Level {
+  text-align: center;
+}
+
+ol.noteslist {
+  max-width: 720px;
+}
+
+li.noteslist {
+  margin-bottom: 0.5em;
+}

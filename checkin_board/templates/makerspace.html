@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Who's In {{makerspace}}?{% endblock %}
+{% block bodyclass %}{{slug}}{% endblock %}
+{% block makerspace %}{{makerspace}}{% endblock %}
+{% block content %}
+
+{% for checkin in checkins %}
+	<div class="row">
+		<div class="picture-column">
+			<img class="profile-photo" src="{{checkin['Profile Photo']}}" width="80px" height="80px" />
+		</div>
+		<div class="text-column">
+			<div class="display-name">
+				{% if checkin['On Duty'] %}
+					<h2 class="display-name"><span class="onduty"> {{checkin['Display Name']}}</span>
+						{% if checkin['Mentor'] %} <span class="mentor">M</span>{% endif %}</h2>
+				{% else %}
+					<h2 class="display-name"> {{checkin['Display Name']}} 
+						{% if checkin['Mentor'] %} <span class="mentor">M</span>{% endif %}</h2>
+				{% endif %}
+			</div>
+			<div class="credential-tags">
+				<ul class="credential-tags">
+					{% for tag in checkin['Credentials'] %}
+						<li class="credential-tags">
+							<span class="credential-tag {{tag['Style']}}">{{tag['Name']}}</span>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+
+{% if not checkins %}
+	<div class="row">
+		<p class="noone"><span class="noone"></span></p>
+	</div>
+{% endif %}
+
+<div class="timestamp">2024-02-29 17:39:02</div>
+{% endblock %}

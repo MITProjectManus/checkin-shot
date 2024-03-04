@@ -1,3 +1,16 @@
+# no configuration which may contain secrets
 env.py
+
+# no Python venv stuff; should be recreated on install
+bin
+lib
+include
+pyvenv.cfg
 __pycache__
-test.py
+checkin_board/__pycache__
+
+# no sqlite3 DB; should be recreated on running initdb.py
+mystate.db
+
+# macOS stuff
+.DS_Store

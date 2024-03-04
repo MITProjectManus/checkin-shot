@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset=“UTF-8”>
+	<title>API Error</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/checkin.css') }}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body class="error">
+	<h1 class="error">API Error &#x1F622;&#x1F494;</h1>
+	<p class="error">We have encountered an API error trying to fetch data from Airtable. The specific error was:</p>
+
+	<div class="errorbox">
+		{{error}}
+	</div>
+
+	<p class="error">Email has been set to report the error &#x1F916; but if you don't think anyone is hustling to fix it, please follow up at <strong>make-admin@mit.edu</strong> &#x1F64F;</p>
+</body>
+</html>
