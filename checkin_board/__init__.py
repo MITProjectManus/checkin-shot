@@ -104,8 +104,6 @@ def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timesta
 				this_checkin['Credentials'] = clean_credentials(line['fields']['Compact-Full-Credential'], makerspaces[makerspace_slug]['home'])
 
 			checkins.append(this_checkin)
-			timestamp = 
-
 	return(render_template('makerspace.html', checkins = checkins, slug = makerspace_slug, makerspace = makerspace_name, idle_message = random.choice(idle_messages), reload=http_reload, timestamp=timestamp))
 
 @app.route("/checkins/error")
