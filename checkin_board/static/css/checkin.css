@@ -21,6 +21,10 @@ body.beaverworks {
   background-color: #336699;
 }
 
+body.zauberstube {
+  background-color: #66add2;
+}
+
 body.theend {
   background-color: linen;
 }
@@ -143,16 +147,14 @@ span.mentor {
 p.noone {
   padding-top: 10rem;
   padding-bottom: 10rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   color: darkslateblue;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: normal;
   font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;  
 
-}
-
-span.noone:before {
-  content: "No one is checked in right now. 🤔 Hmmm.... if no one is checked in right now, then who is reading this message?? 🙀";
 }
 
 div.credential-tags {

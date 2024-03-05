@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset=“UTF-8”>
+	{% if reload %}
+	<meta http-equiv="Refresh" content="{{reload}}">
+	{% endif %}
 	<title>{% block title %} {% endblock %}</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/checkin.css') }}" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/credentialcolors.css') }}" />

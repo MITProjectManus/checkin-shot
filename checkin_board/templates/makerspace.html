@@ -35,9 +35,9 @@
 
 {% if not checkins %}
 	<div class="row">
-		<p class="noone"><span class="noone"></span></p>
+		<p class="noone">{{idle_message}}<span class="noone"></span></p>
 	</div>
 {% endif %}
 
-<div class="timestamp">2024-02-29 17:39:02</div>
+<div class="timestamp">{{timestamp}}</div>
 {% endblock %}

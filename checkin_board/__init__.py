@@ -1,13 +1,15 @@
 from flask import Flask, render_template, request, redirect
 from pyairtable import Table
 from smtplib import SMTP_SSL as SMTP
+from datetime import datetime
+import random
 import sqlite3
 
 # Local env.py file containing runtime data that is not tracked in repo
 # keys = dict with AT PAT and regen key
 # makerspaces = list of makerspaces with slug, view, and name info
 # atcheckin = AT IDs for this instance, category_sort_order list
-from env import keys, makerspaces, atcheckin, email
+from env import keys, makerspaces, atcheckin, email, idle_messages
 
 app = Flask(__name__)
 
@@ -29,11 +31,31 @@ def home():
 # page and no API calls are made.
 @app.route("/checkins/<makerspace>")
 def checkin_screen(makerspace):
+	#
+	# There's probably a more efficient way to handle the
+	# passing of a reload value in seconds
+	#
+	http_reload = 0
+	if(request.args.get('reload')):
+		# "reload" query param must be an integer
+		try:
+			http_reload = int(request.args.get('reload'))
+		except ValueError:
+			http_reload = 0
+
+		# Also, we don't allow refesh intervals less that 10s (API calls = $$)
+		if(http_reload < 10 and http_reload != 0):
+			http_reload = 10
+
+	# We add a subtle datetime and IP address string to the page
+	timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " " + request.remote_addr
+
+	# Now on to checking the regen "secret"
 	if(request.args.get('regen') == keys['regen'] and 
 		(request.remote_addr.startswith('127.') or 
 			request.remote_addr.startswith('10.'))):
 		if(makerspace in makerspaces.keys()):
-			return(makerspace_checkins(makerspace_slug = makerspace, makerspace_name = makerspaces[makerspace]['name']))
+			return(makerspace_checkins(makerspace_slug = makerspace, makerspace_name = makerspaces[makerspace]['name'], http_reload=http_reload, timestamp=timestamp))
 		else:
 			return(redirect("/", code=302))
 	else:
@@ -48,7 +70,7 @@ def guide():
 	return(render_template('guide.html'))
 
 
-def makerspace_checkins(makerspace_slug, makerspace_name):
+def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timestamp=""):
 	# Not that this call to Table is becoming deprecated in the pyairtable library and
 	# should transition to using the Api.table() call instead.
 	airtable_checkins = Table(keys['airtable'], atcheckin['base'], atcheckin['table'])
@@ -82,8 +104,9 @@ def makerspace_checkins(makerspace_slug, makerspace_name):
 				this_checkin['Credentials'] = clean_credentials(line['fields']['Compact-Full-Credential'], makerspaces[makerspace_slug]['home'])
 
 			checkins.append(this_checkin)
+			timestamp = 
 
-	return(render_template('makerspace.html', checkins = checkins, slug = makerspace_slug, makerspace = makerspace_name))
+	return(render_template('makerspace.html', checkins = checkins, slug = makerspace_slug, makerspace = makerspace_name, idle_message = random.choice(idle_messages), reload=http_reload, timestamp=timestamp))
 
 @app.route("/checkins/error")
 def checkins_error(error_message):
@@ -134,6 +157,8 @@ def dedupe_and_append(credentials, credential):
 	if(addnew):
 		result.append(credential)
 	return(result)
+
+
 
 def email_notify(msg):
 	conn = SMTP(email['server'])
