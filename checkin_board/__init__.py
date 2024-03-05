@@ -48,7 +48,12 @@ def checkin_screen(makerspace):
 			http_reload = 10
 
 	# We add a subtle datetime and IP address string to the page
-	timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " " + request.remote_addr
+	if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+		remote_addr = request.environ['REMOTE_ADDR']
+	else:
+		remote_addr = request.environ['HTTP_X_FORWARDED_FOR']
+	
+	timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S") + " " + remote_addr
 
 	# Now on to checking the regen "secret"
 	if(request.args.get('regen') == keys['regen'] and 
