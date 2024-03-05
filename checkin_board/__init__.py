@@ -57,8 +57,8 @@ def checkin_screen(makerspace):
 
 	# Now on to checking the regen "secret"
 	if(request.args.get('regen') == keys['regen'] and 
-		(request.remote_addr.startswith('127.') or 
-			request.remote_addr.startswith('10.'))):
+		(remote_addr.startswith('127.') or 
+			remote_addr.startswith('10.'))):
 		if(makerspace in makerspaces.keys()):
 			return(makerspace_checkins(makerspace_slug = makerspace, makerspace_name = makerspaces[makerspace]['name'], http_reload=http_reload, timestamp=timestamp))
 		else:
