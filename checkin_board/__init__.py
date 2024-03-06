@@ -97,6 +97,10 @@ def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timesta
 			if('Display Name' in line['fields'].keys()):
 				this_checkin['Display Name'] = line['fields']['Display Name'][0]
 
+			if('Kerberos Name' in line['fields'].keys()):
+				if(len(line['fields']['Kerberos Name'])):
+					this_checkin['Display Name'] = this_checkin['Display Name'] + " (" + line['fields']['Kerberos Name'][0] + ")"
+
 			if('Roles' in line['fields'].keys()):
 				if('Mentor' in line['fields']['Roles']):
 					this_checkin['Mentor'] = True

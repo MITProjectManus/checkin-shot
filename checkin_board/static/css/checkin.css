@@ -105,6 +105,10 @@ div.picture-column {
 
 div.text-column {
   border-style: none;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
 }
 
 img.profile-photo {
@@ -116,7 +120,6 @@ img.profile-photo {
 h2.display-name {
   font-size: 1.2em;
   margin-top: 0px;
-  padding-top: 5px;
   padding-bottom: 0px;
   border-bottom: none;
 }
