@@ -89,7 +89,7 @@ def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timesta
 	checkins = []
 	if(len(checkins_list)):
 		for line in checkins_list:
-			this_checkin = {'Profile Photo':'', 'Display Name':'', 'Mentor':False, 'On Duty':False, 'Credentials':[]}
+			this_checkin = {'Profile Photo':'', 'Display Name':'', 'Kerberos Name':'','Mentor':False, 'On Duty':False, 'Credentials':[]}
 
 			if('Profile Photo' in line['fields'].keys()):
 				this_checkin['Profile Photo'] = line['fields']['Profile Photo'][0]['url']
@@ -99,7 +99,7 @@ def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timesta
 
 			if('Kerberos Name' in line['fields'].keys()):
 				if(len(line['fields']['Kerberos Name'])):
-					this_checkin['Display Name'] = this_checkin['Display Name'] + " (" + line['fields']['Kerberos Name'][0] + ")"
+					this_checkin['Kerberos Name'] = line['fields']['Kerberos Name'][0]
 
 			if('Roles' in line['fields'].keys()):
 				if('Mentor' in line['fields']['Roles']):

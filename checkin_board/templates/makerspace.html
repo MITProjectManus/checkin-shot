@@ -14,9 +14,11 @@
 			<div class="display-name">
 				{% if checkin['On Duty'] %}
 					<h2 class="display-name"><span class="onduty"> {{checkin['Display Name']}}</span>
+						{% if checkin['Kerberos Name'] %} <span class="kerberos">({{checkin['Kerberos Name']}})</span>{% endif %}
 						{% if checkin['Mentor'] %} <span class="mentor">M</span>{% endif %}</h2>
 				{% else %}
 					<h2 class="display-name"> {{checkin['Display Name']}} 
+						{% if checkin['Kerberos Name'] %} <span class="kerberos">({{checkin['Kerberos Name']}})</span>{% endif %}
 						{% if checkin['Mentor'] %} <span class="mentor">M</span>{% endif %}</h2>
 				{% endif %}
 			</div>
