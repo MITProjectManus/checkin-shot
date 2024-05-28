@@ -110,7 +110,7 @@ def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timesta
 					this_checkin['Mentor'] = True
 
 			if('Survey Response' in line['fields'].keys()):
-				if(line['fields']['Survey Response'] == 'on duty'):
+				if(line['fields']['Survey Response'].lower() == 'on duty'):
 					this_checkin['On Duty'] = True
 
 			if('Compact-Full-Credential' in line['fields'].keys()):
