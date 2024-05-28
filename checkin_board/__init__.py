@@ -14,6 +14,7 @@ from env import keys, makerspaces, atcheckin, email, idle_messages
 app = Flask(__name__)
 
 # Note: request IP can be found in request.remote_addr; allow 10.x.x.x and 127.0.0.1
+# Maybe add 18.30.x.x and 18.28.x.x and 18.19.x.x
 
 # We use this SQLite3 DB to store state that needs to be shared across threads
 connection = sqlite3.connect('mystate.db')
@@ -58,7 +59,9 @@ def checkin_screen(makerspace):
 	# Now on to checking the regen "secret"
 	if(request.args.get('regen') == keys['regen'] and 
 		(remote_addr.startswith('127.') or 
-			remote_addr.startswith('10.'))):
+			remote_addr.startswith('10.') or 
+			remote_addr.startswith('18.30.') or 
+			remote_addr.startswith('18.28.'))):
 		if(makerspace in makerspaces.keys()):
 			return(makerspace_checkins(makerspace_slug = makerspace, makerspace_name = makerspaces[makerspace]['name'], http_reload=http_reload, timestamp=timestamp))
 		else:
@@ -92,7 +95,8 @@ def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timesta
 			this_checkin = {'Profile Photo':'', 'Display Name':'', 'Kerberos Name':'','Mentor':False, 'On Duty':False, 'Credentials':[]}
 
 			if('Profile Photo' in line['fields'].keys()):
-				this_checkin['Profile Photo'] = line['fields']['Profile Photo'][0]['url']
+				if(line['fields']['Profile Photo'][0]['thumbnails']):
+					this_checkin['Profile Photo'] = line['fields']['Profile Photo'][0]['thumbnails']['large']['url']
 
 			if('Display Name' in line['fields'].keys()):
 				this_checkin['Display Name'] = line['fields']['Display Name'][0]
