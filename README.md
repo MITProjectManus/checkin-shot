@@ -35,7 +35,7 @@ This program requires a local file, `env.py`, which sets several key variables u
 # for which credentials will be shown.
 #
 makerspaces = {
-    'zauberstube' : {'url' : 'URL to Public Airtable View', 'view' : 'viw0UUXVnxNPNvnwg', 'name' : 'Die Zauberstube', 'home' : ['zauberstube']}
+    'zauberstube' : {'url' : 'URL to Public Airtable View', 'view' : 'viewID', 'name' : 'Die Zauberstube', 'home' : ['zauberstube']}
 }
 
 idle_messages = [
