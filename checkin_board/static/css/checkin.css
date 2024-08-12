@@ -29,6 +29,10 @@ body.theend {
   background-color: linen;
 }
 
+body.edgertonmachine {
+    background-color: #a31f34;
+}
+
 .noto-color emoji-regular {
   font-family: "Noto Color Emoji", sans-serif;
   font-weight: 400;
