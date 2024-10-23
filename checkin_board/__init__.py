@@ -172,10 +172,11 @@ def dedupe_and_append(credentials, credential):
 
 
 def email_notify(msg):
-	conn = SMTP(email['server'])
-	conn.login(email['user'], email['pass'])
-	conn.sendmail(email['sender'], email['recipients'], 'Subject: Airtable API error when generating checkin screen\n\n' + msg)
-	conn.quit()
+	if(email['notify']):
+		conn = SMTP(email['server'])
+		conn.login(email['user'], email['pass'])
+		conn.sendmail(email['sender'], email['recipients'], 'Subject: Airtable API error when generating checkin screen\n\n' + msg)
+		conn.quit()
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", port=8000, debug=True)
