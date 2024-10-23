@@ -25,6 +25,10 @@ body.zauberstube {
   background-color: #66add2;
 }
 
+body.makerworkshop {
+  background-color: #333333;
+}
+
 body.theend {
   background-color: linen;
 }
