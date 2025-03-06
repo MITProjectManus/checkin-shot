@@ -92,7 +92,7 @@ def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timesta
 	checkins = []
 	if(len(checkins_list)):
 		for line in checkins_list:
-			this_checkin = {'Profile Photo':'', 'Display Name':'', 'Kerberos Name':'','Mentor':False, 'On Duty':False, 'Credentials':[]}
+			this_checkin = {'Profile Photo':'', 'Display Name':'', 'Kerberos Name':'', 'Pronouns':'' , 'Mentor':False, 'On Duty':False, 'Credentials':[]}
 
 			if('Profile Photo' in line['fields'].keys()):
 				if(line['fields']['Profile Photo'][0]['thumbnails']):
@@ -105,8 +105,12 @@ def makerspace_checkins(makerspace_slug, makerspace_name, http_reload=0, timesta
 				if(len(line['fields']['Kerberos Name'])):
 					this_checkin['Kerberos Name'] = line['fields']['Kerberos Name'][0]
 
+			if('Pronouns' in line['fields'].keys()):
+				if(len(line['fields']['Pronouns'])):
+					this_checkin['Pronouns'] = line['fields']['Pronouns'][0]
+
 			if('Roles' in line['fields'].keys()):
-				if('Mentor' in line['fields']['Roles']):
+				if(isMentor(line['fields']['Roles'])):
 					this_checkin['Mentor'] = True
 
 			if('Survey Response' in line['fields'].keys()):
@@ -148,6 +152,12 @@ def clean_credentials(credentials, home):
 # Custom sort order for a list of credential dicts based on category_sort_order in env.py
 def sortFn(credential):
 	return(atcheckin['category_sort_order'].index(credential['Category']))
+
+def isMentor(roles):	
+	for mr in atcheckin['mentor_roles']:
+		if(mr in roles):
+			return(mr)
+	return('')
 
 # Return a list of credential dicts with the new credential appended IF
 # it does not already exist, and IF it is not superseded by a higher level
