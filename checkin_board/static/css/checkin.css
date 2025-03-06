@@ -98,7 +98,7 @@ h2.guide {
 }
 
 div.row {
-  background-color: white;
+  background-color: #ffffff;
   min-height: 90px;
   margin-bottom: 10px;
   margin-left: 5px;
@@ -138,25 +138,27 @@ h2.display-name {
   border-bottom: none;
 }
 
+
+span.onduty {
+  font-weight: bold;
+  padding-right: .5em;
+}
+
 span.onduty:before {
   color: white;
-  background-color: forestgreen;
-  content: "ON DUTY";
+  background-color: #00a19c;
+  content: " ON DUTY - ASK ME FIRST ";
   padding: 2px;
-  border: 2px solid forestgreen;
+  border: 2px solid #00a19c;
   border-radius: 8px;
   font-weight: bold;
   font-size: .8em;
 }
 
-span.onduty {
-  font-weight: bold;
-}
-
 span.mentor {
   font-size: .8em;
-  color: #999999;
-  border: 1px solid #999999;
+  color: #666666;
+  border: 1px solid #666666;
   border-radius: 8px;
   padding: 2px;
 }
@@ -165,7 +167,32 @@ span.kerberos {
   font-weight: normal;
   color: #333333;
   font-family: "Lucida Console", "Menlo", "Monaco", "Courier", monospace;
+  font-size: 0.7em;
+}
+
+span.kerberos:before {
+  font-weight: normal;
+  color: #333333;
+  content: ", ";
   font-size: 0.8em;
+}
+
+span.pronouns {
+  font-weight: normal;
+  font-size: 0.8em;
+  color: #333333;
+}
+
+span.pronouns:before {
+  font-weight: normal;
+  color: #333333;
+  content: ", ";
+}
+
+span.pronouns:after {
+  font-weight: normal;
+  color: #333333;
+  content: " ";
 }
 
 p.noone {
