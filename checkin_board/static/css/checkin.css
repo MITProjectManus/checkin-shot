@@ -34,7 +34,11 @@ body.theend {
 }
 
 body.edgertonmachine {
-    background-color: #a31f34;
+  background-color: #a31f34;
+}
+
+body.voxel {
+  background-color: #636970;
 }
 
 .noto-color emoji-regular {
