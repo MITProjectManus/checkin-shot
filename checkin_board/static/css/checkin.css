@@ -41,6 +41,10 @@ body.voxel {
   background-color: #636970;
 }
 
+body.madshop {
+  background-color: #003366;
+}
+
 .noto-color emoji-regular {
   font-family: "Noto Color Emoji", sans-serif;
   font-weight: 400;
